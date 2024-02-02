@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Records</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Sentiment Analysis Records</h2>
+    <table>
+        <tr>
+            <th>Input Text</th>
+            <th>Output Score</th>
+        </tr>
+        {% for sentiment in sentiments %}
+        <tr>
+            <td>{{ sentiment.text }}</td>
+            <td>{{ sentiment.sentiment }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <button onclick="window.location.href='/download'">Download CSV</button>
+</body>
+</html>

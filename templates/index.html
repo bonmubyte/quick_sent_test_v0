@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis</h1>
+    <textarea id="textInput" rows="4" cols="50"></textarea><br>
+    <button onclick="analyzeText()">Analyze</button>
+    <div id="result"></div>
+
+    <script>
+        function analyzeText() {
+            var text = document.getElementById('textInput').value;
+            fetch('/analyze', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 'text': text })
+            }).then(response => response.json())
+              .then(data => {
+                  document.getElementById('result').innerText = 'Sentiment Score: ' + data.sentiment;
+              });
+        }
+    </script>
+</body>
+</html>
